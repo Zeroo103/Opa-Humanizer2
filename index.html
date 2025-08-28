@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opa Humanizer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">Opa Humanizer</h1>
+                <p class="subtitle">Förvandla AI-text till naturligt språk</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="workspace">
+                <div class="input-panel">
+                    <div class="panel-header">
+                        <h2>Original text</h2>
+                    </div>
+                    <div class="textarea-container">
+                        <textarea 
+                            id="inputText" 
+                            placeholder="Klistra in din AI-genererade text här..."
+                            rows="12"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="controls">
+                        <button id="humanizeBtn" class="btn-primary">
+                            <span class="btn-text">Humanisera</span>
+                            <span class="loading" style="display: none;">
+                                <svg class="spinner" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32">
+                                        <animate attributeName="stroke-dashoffset" dur="1s" values="32;0" repeatCount="indefinite"/>
+                                    </circle>
+                                </svg>
+                                Bearbetar...
+                            </span>
+                        </button>
+                        <button id="clearBtn" class="btn-secondary">Rensa</button>
+                    </div>
+                </div>
+
+                <div class="output-panel">
+                    <div class="panel-header">
+                        <h2>Humaniserad text</h2>
+                        <button id="copyBtn" class="btn-copy" style="display: none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="m5 15-4-4 4-4"></path>
+                            </svg>
+                            Kopiera
+                        </button>
+                    </div>
+                    <div class="textarea-container">
+                        <textarea 
+                            id="outputText" 
+                            placeholder="Den humaniserade texten kommer att visas här..."
+                            rows="12"
+                            readonly
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-panel" id="analysisPanel" style="display: none;">
+                <div class="panel-header">
+                    <h3>Analys & Förändringar</h3>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">AI-kännetecken</div>
+                        <div id="aiPatterns" class="metric-value">-</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Mänsklighetsscore</div>
+                        <div id="humanScore" class="metric-value">-/10</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Detektionsrisk</div>
+                        <div id="detectionRisk" class="metric-value">-</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Konfidensgrad</div>
+                        <div id="confidenceLevel" class="metric-value">-</div>
+                    </div>
+                </div>
+
+                <div class="changes-section" id="changesExplanation" style="display: none;">
+                    <h4>Genomförda förändringar</h4>
+                    <ul id="changesList" class="changes-list"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
